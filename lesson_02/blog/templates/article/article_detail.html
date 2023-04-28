@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+<body>
+{% block content %}
+<div class="post-card">
+  <div class="art-details">
+    <div class="my-4">
+      <h5>{{ article.title }}</h5>
+    </div>
+    <div class="my-4">
+      <img src="static/img/article/no_photo.webp" class="img-fluid rounded-start" alt="...">
+    </div>
+    <p>{{ article.content }}</p>
+    <div class="product-bottom-details d-flex justify-content-between">
+      <div class="product-price">
+        <div class="post-meta">
+          <span><i class="fa-regular fa-circle-user"></i> {{ user.name }}</span>
+          <span>•</span>
+          <span><i class="fa-regular fa-calendar"></i> 28-04-2023</span>
+          <span>•</span>
+          <span><a href=""><i class="fa-regular fa-folder-open"></i> Политика</a></span>
+          <span>•</span>
+          <span><i class="fa-regular fa-comments"></i> 5</span>
+        </div>
+      </div>
+      <div class="comment-links">
+        <a href="#"><i class="fa-regular fa-comments"></i></a>
+        <a href="#"><i class="far fa-heart"></i></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+</body>
+</html>

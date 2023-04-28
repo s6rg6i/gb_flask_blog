@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+<body>
+{% block page_title %}Список постов{% endblock %}
+{% block content %}
+{% for article in articles %}
+<div class="col-lg-12 col-sm-6 mb-3">
+  <div class="row g-0 post-card">
+    <div class="col-md-2 post-thumb">
+      <img src="static/img/article/no_photo.webp" class="img-fluid rounded-start" alt="...">
+    </div>
+    <div class="col-md-10 post-details">
+      <h5><a href="{{ url_for('article.article_detail', pk=article.id) }}">{{ article.title }}</a></h5>
+      <div class="post-meta">
+        <span><i class="fa-regular fa-circle-user"></i> {{ users_by_id[article.author_id].name }}</span>
+        <span>•</span>
+        <span><i class="fa-regular fa-calendar"></i> 28-04-2023</span>
+        <span>•</span>
+        <span><a href=""><i class="fa-regular fa-folder-open"></i> Политика</a></span>
+        <span>•</span>
+        <span><i class="fa-regular fa-comments"></i> 5</span>
+      </div>
+      <p>{{ article.content }}</p>
+      <a href="{{ url_for('article.article_detail', pk=article.id) }}" class="post-btn">
+        Читать далее >
+      </a>
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% endblock %}
+</body>
+</html>
