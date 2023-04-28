@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+<body>
+{% block page_title %}Авторизация{% endblock %}
+{% block content %}
+
+<div class="form-signin w-100 m-auto">
+  <form method="post" action="{{ url_for('auth.check_in') }}">
+    <div class="form-floating mb-3">
+      <input required type="text" name="login" class="form-control" id="login">
+      <label for="login">Логин</label>
+    </div>
+    <div class="form-floating mb-3">
+      <input required type="password" name="password" class="form-control" id="password">
+      <label for="password">Пароль</label>
+    </div>
+    <button class="w-100 btn btn-lg btn-ok" type="submit">Подтвердить</button>
+  </form>
+</div>
+
+{% endblock %}
+</body>
+</html>
