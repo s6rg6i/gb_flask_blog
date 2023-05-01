@@ -42,7 +42,7 @@ class Category(db.Model):
     post = db.relationship('Post', back_populates='category')
 
     def __repr__(self):
-        return f"<Profile {self.id} of user {self.user_id}>"
+        return f"<{self.name}>"
 
 
 class Post(db.Model):
@@ -52,7 +52,7 @@ class Post(db.Model):
     content = db.Column(db.Text(), nullable=True)
     photo = db.Column(db.String(200), nullable=True)
     created = db.Column(db.DateTime, default=datetime.utcnow)
-    updated = db.Column(db.DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+    updated = db.Column(db.DateTime)
     draft = db.Column(db.Boolean, default=False)
     user_id = db.Column(db.Integer(), db.ForeignKey('user.id', ondelete="CASCADE"))
     category_id = db.Column(db.Integer(), db.ForeignKey('category.id', ondelete="CASCADE"))

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+<body>
+{% block page_title %}Создание поста{% endblock %}
+
+{% block content %}
+
+<div class="row post">
+    <div class="col-md-6 offset-md-3">
+        <div class="card card-body bg-light">
+            <form method="post" action="{{ url_for('post.create_post') }}">
+              {{ form.csrf_token }}
+              {{ form['title'].label(class="form-label") }}
+              {{ form['title'](class="form-control mb-4") }}
+              {{ form['content'].label(class="form-label") }}
+              {{ form['content'](class="form-control mb-4",rows="9", cols="25") }}
+              {{ form['category'].label(class="form-label") }}
+              {{ form['category'](class="form-control mb-4") }}
+
+
+                <div class="d-grid gap-2">
+                    <button class="btn btn-lg btn-ok" type="submit">Отправить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+</body>
+</html>
+
