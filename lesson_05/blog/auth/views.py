@@ -4,7 +4,7 @@ from flask_login import logout_user, login_user, login_required, current_user
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from blog.extension import db
-from blog.forms.user_forms import UserRegisterForm, UserLoginForm
+from blog.forms.auth_forms import RegisterForm, LoginForm
 from blog.models import User, Profile
 
 auth = Blueprint('auth', __name__, static_folder='../static')
@@ -16,7 +16,7 @@ def login():
     if current_user.is_authenticated:
         return redirect(url_for('post.post_list'))
 
-    form = UserLoginForm(request.form)
+    form = LoginForm(request.form)
 
     login_name = form.login.data
     password = form.password.data
@@ -41,7 +41,7 @@ def register():
     if current_user.is_authenticated:
         return redirect(url_for('post.post_list'))
 
-    form = UserRegisterForm(request.form)
+    form = RegisterForm(request.form)
 
     login_name = form.login.data
     name = form.name.data
