@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+<body>
+{% block content %}
+<div class="post-card">
+  <div class="art-details">
+    <div class="my-4">
+      <h5>{{ post.title }}</h5>
+    </div>
+    <div class="my-4">
+      <img src="/static/img/post/no_photo.webp" class="img-fluid rounded-start" alt="...">
+    </div>
+    <p>{{ post.content }}</p>
+    <div class="product-bottom-details d-flex justify-content-between">
+      <div class="product-price">
+        <div class="post-meta">
+          <span><i class="fa-solid fa-tags"></i> Теги: </span>
+          {% for tag in post.tags%}
+          <span><a href="{{ url_for('post.posts_by_tag', pk=tag.id) }}">{{ tag.title }}</a></span>
+          {% if not loop.last %}
+          <span>•</span>
+          {% endif %}
+          {% endfor%}
+        </div>
+        <div class="post-meta">
+          <span><i class="fa-regular fa-circle-user"></i> {{ post.author.profile.name }}</span>
+          <span>•</span>
+          <span><i class="fa-regular fa-calendar"></i> {{ post.created }}</span>
+          <span>•</span>
+          <span><a href="{{ url_for('post.posts_by_category', pk=post.category_id) }}">
+            <i class="fa-regular fa-folder-open"></i> {{post.category.name}}</a></span>
+          <span>•</span>
+          <span><i class="fa-regular fa-heart"></i> {{ post.likes|length }}</span>
+          <span>•</span>
+          <span><i class="fa-regular fa-comments"></i> 22</span>
+        </div>
+      </div>
+
+      <div class="comment-links my-3">
+        {% if current_user.is_authenticated %}
+        <a href="#"><i class="fa-regular fa-comments" style="color: #1eafed;"></i></a>
+        <a href="{{ url_for('post.post_detail', pk=post.id, like='1') }}">
+          <i class="far fa-heart" style="color: #1eafed;"></i>
+        </a>
+        {% endif %}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% from "macro/render-form.html" import render_form %}
+  <div class="mt-5">
+    {{ render_form(form, url_for('post.post_detail', pk=post.id)) }}
+  </div>
+
+
+
+{% endblock %}
+</body>
+</html>
